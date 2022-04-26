@@ -55,9 +55,10 @@ jobs:
         if: matrix.targetPlatform == 'WebGL'
         run: |
           prodRun=""
-          if [[ ${GITHUB_REF} == "refs/heads/main" ]]; then
+          if [[ ${GITHUB_REF} == "refs/heads/main" ||  ${GITHUB_REF} == "refs/heads/master" ]]; then
             prodRun="--prod"
           fi
+
           echo $prodRun
           echo ${GITHUB_REF}
 
