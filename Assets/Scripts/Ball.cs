@@ -18,4 +18,11 @@ public class Ball : MonoBehaviour
     {
         
     }
+
+    public void ReturnToCenter() {
+        int velZ = Random.Range(0, 4) > 2 ? Random.Range(-4, -7) : Random.Range(4, 7);
+
+        rb.velocity = new Vector3(4, 0, velZ);
+        transform.position = new Vector3(0.1f, 0.2f, 0.2f);
+    }
 }
