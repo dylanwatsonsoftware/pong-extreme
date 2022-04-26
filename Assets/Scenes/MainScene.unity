@@ -333,6 +333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64691b951121841f9bed29dbf8147fe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  top: 0
   score: 0
   left: left
   right: right
@@ -461,6 +462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64691b951121841f9bed29dbf8147fe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  top: 1
   score: 0
   left: a
   right: d

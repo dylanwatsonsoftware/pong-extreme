@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Paddle: MonoBehaviour {
+  public bool top;
   public int score = 0;
   public String left, right;
 
@@ -31,25 +32,27 @@ public class Paddle: MonoBehaviour {
       if (theTouch.phase == TouchPhase.Began) {
         touchStartPosition = theTouch.position;
       } else if (theTouch.phase == TouchPhase.Moved || theTouch.phase == TouchPhase.Ended) {
+        bool touchedMySide = top ? touchStartPosition.y > Screen.height / 2 : touchStartPosition.y < Screen.height / 2;
 
         float x = theTouch.position.x - touchEndPosition.x;
         float y = theTouch.position.y - touchEndPosition.y;
 
         touchEndPosition = theTouch.position;
 
-        if (Mathf.Abs(x) == 0 && Mathf.Abs(y) == 0) {
-          direction = "Tapped";
-        } else if (Mathf.Abs(x) > Mathf.Abs(y)) {
-            direction = x > 0 ? "Right" : "Left";
+        if (touchedMySide) {
+            if (Mathf.Abs(x) == 0 && Mathf.Abs(y) == 0) {
+                direction = "Tapped";
+            } else if (Mathf.Abs(x) > Mathf.Abs(y)) {
+                direction = x > 0 ? "Right" : "Left";
 
-            if(x > 0) {
-                transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
+                if(x > 0) {
+                    transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
+                } else {
+                    transform.Translate(new Vector3(-speed * Time.deltaTime, 0, 0));
+                }
             } else {
-                transform.Translate(new Vector3(-speed * Time.deltaTime, 0, 0));
+                direction = y > 0 ? "Up" : "Down";
             }
-            
-        } else {
-          direction = y > 0 ? "Up" : "Down";
         }
       }
     }
