@@ -808,6 +808,7 @@ GameObject:
   - component: {fileID: 810348397}
   - component: {fileID: 810348399}
   - component: {fileID: 810348398}
+  - component: {fileID: 810348400}
   m_Layer: 5
   m_Name: Blue Score
   m_TagString: Untagged
@@ -876,6 +877,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 810348396}
   m_CullTransparentMesh: 1
+--- !u!114 &810348400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810348396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feb18ab82c3e149f8a39b031bed0ddf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paddle: {fileID: 461495996}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1163,7 +1177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13b91c5cac9cd4d46ae8b01940dce0cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPaddle: {fileID: 670591405}
+  enemyPaddle: {fileID: 461495996}
 --- !u!1 &1691836341
 GameObject:
   m_ObjectHideFlags: 0
@@ -1463,7 +1477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13b91c5cac9cd4d46ae8b01940dce0cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPaddle: {fileID: 461495996}
+  enemyPaddle: {fileID: 670591405}
 --- !u!1 &2086005239
 GameObject:
   m_ObjectHideFlags: 0
@@ -1475,6 +1489,7 @@ GameObject:
   - component: {fileID: 2086005240}
   - component: {fileID: 2086005242}
   - component: {fileID: 2086005241}
+  - component: {fileID: 2086005243}
   m_Layer: 5
   m_Name: Red Score
   m_TagString: Untagged
@@ -1498,7 +1513,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -128, y: 430}
+  m_AnchoredPosition: {x: -116.7, y: 430.8}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2086005241
@@ -1543,3 +1558,16 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2086005239}
   m_CullTransparentMesh: 1
+--- !u!114 &2086005243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086005239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feb18ab82c3e149f8a39b031bed0ddf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paddle: {fileID: 670591405}
