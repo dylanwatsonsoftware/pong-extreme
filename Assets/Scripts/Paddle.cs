@@ -13,17 +13,24 @@ public class Paddle: MonoBehaviour {
 
     private Touch theTouch;
     private Vector2 touchStartPosition, touchEndPosition;
-    private string direction; 
+    private string direction;
+    private Color dark;
+    private Color light;
 
   void Start() {
-
+    dark = gameObject.GetComponent<Renderer>().material.color;
+    light = new Color(dark.r * 1.4f, dark.g * 1.4f, dark.b * 1.4f);
   }
 
   void FixedUpdate() {
     if (Input.GetKey(left)) {
       transform.Translate(new Vector3(-speed * Time.deltaTime, 0, 0));
+      Brighten();
     } else if (Input.GetKey(right)) {
       transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
+      Brighten();
+    } else {
+      ResetColor();
     }
 
     if (Input.touchCount > 0) {
@@ -31,7 +38,12 @@ public class Paddle: MonoBehaviour {
 
       if (theTouch.phase == TouchPhase.Began) {
         touchStartPosition = theTouch.position;
+        Brighten();
       } else if (theTouch.phase == TouchPhase.Moved || theTouch.phase == TouchPhase.Ended) {
+          if(theTouch.phase == TouchPhase.Ended) {
+              ResetColor();
+          }
+
         bool touchedMySide = top ? touchStartPosition.y > Screen.height / 2 : touchStartPosition.y < Screen.height / 2;
 
         float x = theTouch.position.x - touchEndPosition.x;
@@ -56,5 +68,13 @@ public class Paddle: MonoBehaviour {
         }
       }
     }
+  }
+
+  void Brighten() {
+        gameObject.GetComponent<Renderer>().material.color = light;
+  }
+
+  void ResetColor() {
+        gameObject.GetComponent<Renderer>().material.color = dark;
   }
 }
