@@ -44,9 +44,9 @@ public class Paddle: MonoBehaviour {
             direction = x > 0 ? "Right" : "Left";
 
             if(x > 0) {
-                transform.Translate(new Vector3(-speed * Time.deltaTime, 0, 0));
-            } else {
                 transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
+            } else {
+                transform.Translate(new Vector3(-speed * Time.deltaTime, 0, 0));
             }
             
         } else {
