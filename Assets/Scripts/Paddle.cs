@@ -28,8 +28,6 @@ public class Paddle: MonoBehaviour {
       Brighten();
     } else if (Input.GetKey(right)) {
       transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
-      Brighten();
-    } else {
       ResetColor();
     }
 
