@@ -58,6 +58,8 @@ jobs:
           if [[ ${GITHUB_REF} == "refs/heads/main" ]]; then
             prodRun="--prod"
           fi
+          echo $prodRun
+          echo ${GITHUB_REF}
 
           cd build/WebGL/WebGL
 
