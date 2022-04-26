@@ -6,7 +6,8 @@
 
 ## Demo
 
-https://pong-extreme.vercel.app/
+Prod: https://pong-extreme.vercel.app/
+Latest: https://pong-extreme-dylanwatsonsoftware.vercel.app
 
 ## FAQ
 
