@@ -8,7 +8,7 @@ public class Paddle: MonoBehaviour {
   public int score = 0;
   public String left, right;
 
-  float speed = 3;
+  float speed = 5;
 
     private Touch theTouch;
     private Vector2 touchStartPosition, touchEndPosition;
@@ -33,10 +33,11 @@ public class Paddle: MonoBehaviour {
       if (theTouch.phase == TouchPhase.Began) {
         touchStartPosition = theTouch.position;
       } else if (theTouch.phase == TouchPhase.Moved || theTouch.phase == TouchPhase.Ended) {
-        touchEndPosition = theTouch.position;
 
-        float x = touchEndPosition.x - touchStartPosition.x;
-        float y = touchEndPosition.y - touchStartPosition.y;
+        float x = theTouch.position.x - touchEndPosition.x;
+        float y = theTouch.position.y - touchEndPosition.y;
+
+        touchEndPosition = theTouch.position;
 
         if (Mathf.Abs(x) == 0 && Mathf.Abs(y) == 0) {
           direction = "Tapped";
