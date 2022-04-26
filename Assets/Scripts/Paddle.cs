@@ -36,7 +36,10 @@ public class Paddle: MonoBehaviour {
 
       if (theTouch.phase == TouchPhase.Began) {
         touchStartPosition = theTouch.position;
-        Brighten();
+        bool touchedMySide = top ? touchStartPosition.y > Screen.height / 2 : touchStartPosition.y < Screen.height / 2;
+        if (touchedMySide){
+           Brighten();
+        }
       } else if (theTouch.phase == TouchPhase.Moved || theTouch.phase == TouchPhase.Ended) {
           if(theTouch.phase == TouchPhase.Ended) {
               ResetColor();
