@@ -6,6 +6,16 @@ jobs:
   build:
     name: Build my project ✨
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        unityVersion:
+          - 2020.3.33f1
+        targetPlatform:
+          #- iOS # Build an iOS player.
+          - Android # Build an Android player.
+          - WebGL # WebGL.
+        
     steps:
       # Checkout
       - name: Checkout repository
@@ -17,9 +27,8 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: Library
-          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
-          restore-keys: |
-            Library-
+          key: Library-${{ matrix.targetPlatform }}
+          restore-keys: Library-
 
       # Test
       - name: Run tests
@@ -38,10 +47,34 @@ jobs:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-          targetPlatform: WebGL
+          unityVersion: ${{ matrix.unityVersion }}
+          targetPlatform: ${{ matrix.targetPlatform }}
+
+
+      - name: "Deploy to Vercel"
+        if: matrix.targetPlatform == 'WebGL'
+        run: |
+          prodRun=""
+          if [[ ${GITHUB_REF} == "refs/heads/main" ]]; then
+            prodRun="--prod"
+          fi
+
+          cd build/WebGL/WebGL
+
+          npx vercel --token ${VERCEL_TOKEN} $prodRun
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
 
       # Output
       - uses: actions/upload-artifact@v2
         with:
           name: Build
           path: build
+
+      - uses: actions/upload-artifact@v2
+        if: matrix.targetPlatform == 'Android'
+        with:
+          name: APK
+          path: build/Android/Android.apk
