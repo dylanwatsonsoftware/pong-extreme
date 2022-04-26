@@ -72,3 +72,9 @@ jobs:
         with:
           name: Build
           path: build
+
+      - uses: actions/upload-artifact@v2
+        if: matrix.targetPlatform == 'Android'
+        with:
+          name: APK
+          path: build/Android/Android.apk
