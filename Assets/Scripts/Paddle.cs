@@ -9,7 +9,7 @@ public class Paddle: MonoBehaviour {
   public int score = 0;
   public String left, right;
 
-  float speed = 5;
+  float speed = 6;
 
     private Touch theTouch;
     private Vector2 touchStartPosition, touchEndPosition;
@@ -19,7 +19,7 @@ public class Paddle: MonoBehaviour {
 
   }
 
-  void Update() {
+  void FixedUpdate() {
     if (Input.GetKey(left)) {
       transform.Translate(new Vector3(-speed * Time.deltaTime, 0, 0));
     } else if (Input.GetKey(right)) {
