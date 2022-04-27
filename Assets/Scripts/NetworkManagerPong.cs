@@ -23,14 +23,17 @@ namespace Mirror.Examples.Pong
             // add player at correct spawn position
             Transform start = numPlayers == 0 ? leftRacketSpawn : rightRacketSpawn;
             GameObject player = Instantiate(playerPrefab, start.position, start.rotation);
+            player.GetComponent<Paddle>().SetColourByNumber(numPlayers);
             NetworkServer.AddPlayerForConnection(conn, player);
+
 
             // spawn ball if two players
             if (numPlayers == 2)
             {
                 Debug.Log("2 players! Creating a ball");
 
-                ball = Instantiate(spawnPrefabs.Find(prefab => prefab.name == "Ball"));
+                var ballPrefab = spawnPrefabs.Find(prefab => prefab.name == "Ball3D");
+                ball = Instantiate(ballPrefab);
                 NetworkServer.Spawn(ball);
             }
         }

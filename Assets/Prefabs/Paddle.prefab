@@ -111,6 +111,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64691b951121841f9bed29dbf8147fe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  rigidBody: {fileID: 8203237959471325407}
   top: 0
   score: 0
   left: left

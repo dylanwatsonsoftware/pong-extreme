@@ -7,6 +7,8 @@ using Mirror;
 
 public class Paddle : NetworkBehaviour
 {
+  public Rigidbody rigidBody;
+
   public bool top;
   public int score = 0;
   public String left, right;
@@ -20,7 +22,7 @@ public class Paddle : NetworkBehaviour
     private Color lightColor;
 
   void Start() {
-    darkColor = gameObject.GetComponent<Renderer>().material.color;
+    darkColor = rigidBody.GetComponent<Renderer>().material.color;
     lightColor = new Color(darkColor.r * 1.4f, darkColor.g * 1.4f, darkColor.b * 1.4f);
   }
 
@@ -28,10 +30,10 @@ public class Paddle : NetworkBehaviour
         if (!isLocalPlayer) return;
 
             if (Input.GetKey(left)) {
-      transform.Translate(new Vector3(-speed * Time.deltaTime, 0, 0));
+      rigidBody.transform.Translate(new Vector3(-speed * Time.deltaTime, 0, 0));
       Brighten();
     } else if (Input.GetKey(right)) {
-      transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
+      rigidBody.transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
        ResetColor();
     }
 
@@ -63,9 +65,9 @@ public class Paddle : NetworkBehaviour
                 direction = x > 0 ? "Right" : "Left";
 
                 if(x > 0) {
-                    transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
+                    rigidBody.transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
                 } else {
-                    transform.Translate(new Vector3(-speed * Time.deltaTime, 0, 0));
+                    rigidBody.transform.Translate(new Vector3(-speed * Time.deltaTime, 0, 0));
                 }
             } else {
                 direction = y > 0 ? "Up" : "Down";
@@ -75,11 +77,19 @@ public class Paddle : NetworkBehaviour
     }
   }
 
+  public void SetColourByNumber(int numPlayers) {
+    if(numPlayers == 1) {
+      rigidBody.GetComponent<Renderer>().material.color = Color.blue;
+    } else {
+      rigidBody.GetComponent<Renderer>().material.color = Color.red;
+    }
+  }
+
   void Brighten() {
-        gameObject.GetComponent<Renderer>().material.color = lightColor;
+        rigidBody.GetComponent<Renderer>().material.color = lightColor;
   }
 
   void ResetColor() {
-        gameObject.GetComponent<Renderer>().material.color = darkColor;
+        rigidBody.GetComponent<Renderer>().material.color = darkColor;
   }
 }
