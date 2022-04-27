@@ -9,7 +9,6 @@ public class Paddle : NetworkBehaviour
 {
   public Rigidbody rigidBody;
 
-  public bool top;
   public int score = 0;
   public String left, right;
 
@@ -42,36 +41,29 @@ public class Paddle : NetworkBehaviour
 
       if (theTouch.phase == TouchPhase.Began) {
         touchStartPosition = theTouch.position;
-        bool touchedMySide = top ? touchStartPosition.y > Screen.height / 2 : touchStartPosition.y < Screen.height / 2;
-        if (touchedMySide){
-           Brighten();
-        }
+        Brighten();
       } else if (theTouch.phase == TouchPhase.Moved || theTouch.phase == TouchPhase.Ended) {
           if(theTouch.phase == TouchPhase.Ended) {
               ResetColor();
           }
-
-        bool touchedMySide = top ? touchStartPosition.y > Screen.height / 2 : touchStartPosition.y < Screen.height / 2;
 
         float x = theTouch.position.x - touchEndPosition.x;
         float y = theTouch.position.y - touchEndPosition.y;
 
         touchEndPosition = theTouch.position;
 
-        if (touchedMySide) {
-            if (Mathf.Abs(x) < 0.01 && Mathf.Abs(y) < 0.01) {
-                direction = "Tapped";
-            } else if (Mathf.Abs(x) > Mathf.Abs(y)) {
-                direction = x > 0 ? "Right" : "Left";
+        if (Mathf.Abs(x) < 0.01 && Mathf.Abs(y) < 0.01) {
+            direction = "Tapped";
+        } else if (Mathf.Abs(x) > Mathf.Abs(y)) {
+            direction = x > 0 ? "Right" : "Left";
 
-                if(x > 0) {
-                    rigidBody.transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
-                } else {
-                    rigidBody.transform.Translate(new Vector3(-speed * Time.deltaTime, 0, 0));
-                }
+            if(x > 0) {
+                rigidBody.transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
             } else {
-                direction = y > 0 ? "Up" : "Down";
+                rigidBody.transform.Translate(new Vector3(-speed * Time.deltaTime, 0, 0));
             }
+        } else {
+            direction = y > 0 ? "Up" : "Down";
         }
       }
     }
