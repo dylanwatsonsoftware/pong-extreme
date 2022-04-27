@@ -3,8 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Mirror;
 
-public class Paddle: MonoBehaviour {
+public class Paddle : NetworkBehaviour
+{
   public bool top;
   public int score = 0;
   public String left, right;
@@ -14,21 +16,23 @@ public class Paddle: MonoBehaviour {
     private Touch theTouch;
     private Vector2 touchStartPosition, touchEndPosition;
     private string direction;
-    private Color dark;
-    private Color light;
+    private Color darkColor;
+    private Color lightColor;
 
   void Start() {
-    dark = gameObject.GetComponent<Renderer>().material.color;
-    light = new Color(dark.r * 1.4f, dark.g * 1.4f, dark.b * 1.4f);
+    darkColor = gameObject.GetComponent<Renderer>().material.color;
+    lightColor = new Color(darkColor.r * 1.4f, darkColor.g * 1.4f, darkColor.b * 1.4f);
   }
 
   void FixedUpdate() {
-    if (Input.GetKey(left)) {
+        if (!isLocalPlayer) return;
+
+            if (Input.GetKey(left)) {
       transform.Translate(new Vector3(-speed * Time.deltaTime, 0, 0));
       Brighten();
     } else if (Input.GetKey(right)) {
       transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
-      ResetColor();
+       ResetColor();
     }
 
     if (Input.touchCount > 0) {
@@ -53,7 +57,7 @@ public class Paddle: MonoBehaviour {
         touchEndPosition = theTouch.position;
 
         if (touchedMySide) {
-            if (Mathf.Abs(x) == 0 && Mathf.Abs(y) == 0) {
+            if (Mathf.Abs(x) < 0.01 && Mathf.Abs(y) < 0.01) {
                 direction = "Tapped";
             } else if (Mathf.Abs(x) > Mathf.Abs(y)) {
                 direction = x > 0 ? "Right" : "Left";
@@ -72,10 +76,10 @@ public class Paddle: MonoBehaviour {
   }
 
   void Brighten() {
-        gameObject.GetComponent<Renderer>().material.color = light;
+        gameObject.GetComponent<Renderer>().material.color = lightColor;
   }
 
   void ResetColor() {
-        gameObject.GetComponent<Renderer>().material.color = dark;
+        gameObject.GetComponent<Renderer>().material.color = darkColor;
   }
 }
