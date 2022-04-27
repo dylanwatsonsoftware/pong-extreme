@@ -7,34 +7,47 @@ using Mirror;
 
 public class Paddle : NetworkBehaviour
 {
-  public Rigidbody rigidBody;
+    [SyncVar]
+    public Color color;
 
+  // [SyncVar]
   public int score = 0;
   public String left, right;
 
   float speed = 6;
 
-    private Touch theTouch;
-    private Vector2 touchStartPosition, touchEndPosition;
-    private string direction;
+    // private Touch theTouch;
+    // private Vector2 touchStartPosition, touchEndPosition;
+    // private string direction;
     private Color darkColor;
     private Color lightColor;
 
   void Start() {
-    darkColor = rigidBody.GetComponent<Renderer>().material.color;
+    darkColor = GetComponent<Renderer>().material.color;
     lightColor = new Color(darkColor.r * 1.4f, darkColor.g * 1.4f, darkColor.b * 1.4f);
+    GetComponent<Renderer>().material.color = color;
   }
+
+  void Awake() {
+    GetComponent<Renderer>().material.color = color;
+  }
+
+    public override void OnStartLocalPlayer()
+    {
+        GetComponent<Renderer>().material.color = color;
+    }
 
   void FixedUpdate() {
         if (!isLocalPlayer) return;
 
-            if (Input.GetKey(left)) {
-      rigidBody.transform.Translate(new Vector3(-speed * Time.deltaTime, 0, 0));
-      Brighten();
+    if (Input.GetKey(left)) {
+      transform.Translate(new Vector3(-speed * Time.deltaTime, 0, 0));
+      // Brighten();
     } else if (Input.GetKey(right)) {
-      rigidBody.transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
-       ResetColor();
+      transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
+      //  ResetColor();
     }
+    /*
 
     if (Input.touchCount > 0) {
       theTouch = Input.GetTouch(0);
@@ -58,30 +71,31 @@ public class Paddle : NetworkBehaviour
             direction = x > 0 ? "Right" : "Left";
 
             if(x > 0) {
-                rigidBody.transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
+                transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
             } else {
-                rigidBody.transform.Translate(new Vector3(-speed * Time.deltaTime, 0, 0));
+                transform.Translate(new Vector3(-speed * Time.deltaTime, 0, 0));
             }
         } else {
             direction = y > 0 ? "Up" : "Down";
         }
       }
-    }
+    }*/
   }
 
   public void SetColourByNumber(int numPlayers) {
     if(numPlayers == 1) {
-      rigidBody.GetComponent<Renderer>().material.color = Color.blue;
+      color = Color.blue;
     } else {
-      rigidBody.GetComponent<Renderer>().material.color = Color.red;
+      color = Color.red;
     }
+    GetComponent<Renderer>().material.color = color;
   }
 
   void Brighten() {
-        rigidBody.GetComponent<Renderer>().material.color = lightColor;
+        GetComponent<Renderer>().material.color = lightColor;
   }
 
   void ResetColor() {
-        rigidBody.GetComponent<Renderer>().material.color = darkColor;
+        GetComponent<Renderer>().material.color = darkColor;
   }
 }

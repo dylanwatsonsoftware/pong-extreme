@@ -24,6 +24,7 @@ namespace Mirror.Examples.Pong
             Transform start = numPlayers == 0 ? leftRacketSpawn : rightRacketSpawn;
             GameObject player = Instantiate(playerPrefab, start.position, start.rotation);
             player.GetComponent<Paddle>().SetColourByNumber(numPlayers);
+            player.name = "Paddle " + numPlayers;
             NetworkServer.AddPlayerForConnection(conn, player);
 
 
