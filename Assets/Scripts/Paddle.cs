@@ -16,9 +16,9 @@ public class Paddle : NetworkBehaviour
 
   float speed = 6;
 
-    // private Touch theTouch;
-    // private Vector2 touchStartPosition, touchEndPosition;
-    // private string direction;
+    private Touch theTouch;
+    private Vector2 touchStartPosition, touchEndPosition;
+    private string direction;
     private Color darkColor;
     private Color lightColor;
 
