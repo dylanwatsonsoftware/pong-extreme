@@ -10,7 +10,7 @@ public class Paddle : NetworkBehaviour
     [SyncVar]
     public Color color;
 
-  // [SyncVar]
+  [SyncVar]
   public int score = 0;
   public String left, right;
 
@@ -26,6 +26,7 @@ public class Paddle : NetworkBehaviour
     darkColor = GetComponent<Renderer>().material.color;
     lightColor = new Color(darkColor.r * 1.4f, darkColor.g * 1.4f, darkColor.b * 1.4f);
     GetComponent<Renderer>().material.color = color;
+    GetComponent<Rigidbody>().isKinematic = !isServer;
   }
 
   void Awake() {
