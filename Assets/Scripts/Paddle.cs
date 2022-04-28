@@ -48,7 +48,7 @@ public class Paddle : NetworkBehaviour
       transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
       //  ResetColor();
     }
-    /*
+    
 
     if (Input.touchCount > 0) {
       theTouch = Input.GetTouch(0);
@@ -80,7 +80,7 @@ public class Paddle : NetworkBehaviour
             direction = y > 0 ? "Up" : "Down";
         }
       }
-    }*/
+    }
   }
 
   public void SetColourByNumber(int numPlayers) {
