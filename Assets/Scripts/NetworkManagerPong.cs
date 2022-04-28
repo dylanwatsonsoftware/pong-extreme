@@ -17,36 +17,5 @@ namespace Mirror.Examples.Pong
         public Transform leftRacketSpawn;
         public Transform rightRacketSpawn;
         GameObject ball;
-
-        public override void OnServerAddPlayer(NetworkConnectionToClient conn)
-        {
-            // add player at correct spawn position
-            Transform start = numPlayers == 0 ? leftRacketSpawn : rightRacketSpawn;
-            GameObject player = Instantiate(playerPrefab, start.position, start.rotation);
-            player.GetComponent<Paddle>().SetColourByNumber(numPlayers);
-            player.name = "Paddle " + numPlayers;
-            NetworkServer.AddPlayerForConnection(conn, player);
-
-
-            // spawn ball if two players
-            if (numPlayers == 2)
-            {
-                Debug.Log("2 players! Creating a ball");
-
-                var ballPrefab = spawnPrefabs.Find(prefab => prefab.name == "Ball3D");
-                ball = Instantiate(ballPrefab);
-                NetworkServer.Spawn(ball);
-            }
-        }
-
-        public override void OnServerDisconnect(NetworkConnectionToClient conn)
-        {
-            // destroy ball
-            if (ball != null)
-                NetworkServer.Destroy(ball);
-
-            // call base functionality (actually destroys the player)
-            base.OnServerDisconnect(conn);
-        }
     }
 }
