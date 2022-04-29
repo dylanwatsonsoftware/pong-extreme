@@ -42,10 +42,12 @@ public class Paddle : NetworkBehaviour
         if (!isLocalPlayer) return;
 
     if (Input.GetKey(left)) {
-      transform.Translate(new Vector3(-speed * Time.deltaTime, 0, 0));
+      // transform.Translate(new Vector3(-speed * Time.deltaTime, 0, 0));
+      AddForce(new Vector3(-speed * 500f, 0, 0));
       // Brighten();
     } else if (Input.GetKey(right)) {
-      transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
+      // transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
+      AddForce(new Vector3(speed * 500f, 0, 0));
       //  ResetColor();
     }
     
@@ -72,9 +74,9 @@ public class Paddle : NetworkBehaviour
             direction = x > 0 ? "Right" : "Left";
 
             if(x > 0) {
-                transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
+                AddForce(new Vector3(speed * Time.deltaTime, 0, 0));
             } else {
-                transform.Translate(new Vector3(-speed * Time.deltaTime, 0, 0));
+                AddForce(new Vector3(-speed * Time.deltaTime, 0, 0));
             }
         } else {
             direction = y > 0 ? "Up" : "Down";
@@ -82,6 +84,33 @@ public class Paddle : NetworkBehaviour
       }
     }
   }
+
+  void AddForce(Vector3 forceDir) {
+    if (isServer)
+    {
+        Debug.Log("is server");
+        RpcAddClientForce(ForceMode.Impulse, forceDir);
+    }
+    else
+    {
+        Debug.Log("is client");
+        CmdAddForce(ForceMode.Impulse, forceDir);
+    }
+  }
+
+  [Command]
+    public void CmdAddForce(ForceMode forcemode, Vector3 forcevector)
+    {
+        Debug.Log("command add force");
+        GetComponent<Rigidbody>().AddForce(forcevector, forcemode);
+    }
+ 
+    [ClientRpc]
+    public void RpcAddClientForce(ForceMode forcemode, Vector3 forcevector)
+    {
+        Debug.Log("clientrpc add force");
+        GetComponent<Rigidbody>().AddForce(forcevector, forcemode);
+    }
 
   public void SetColourByNumber(int numPlayers) {
     if(numPlayers == 1) {
