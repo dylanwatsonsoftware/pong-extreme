@@ -105,17 +105,17 @@ public class Paddle : NetworkBehaviour
   }
 
     [Command]
-    public void CmdAddForce(ForceMode forcemode, Vector3 forcevector)
+    public void CmdAddForce(ForceMode forcemode, Vector3 forceVector)
     {
         Debug.Log("command add force");
-        GetComponent<Rigidbody>().MovePosition(forcevector);
+        GetComponent<Rigidbody>().MovePosition(transform.position + forceVector);
     }
  
     [ClientRpc]
-    public void RpcAddClientForce(ForceMode forcemode, Vector3 forcevector)
+    public void RpcAddClientForce(ForceMode forcemode, Vector3 forceVector)
     {
         Debug.Log("clientrpc add force");
-        GetComponent<Rigidbody>().MovePosition(forcevector);
+        GetComponent<Rigidbody>().MovePosition(transform.position + forceVector);
     }
 
   public void SetColourByNumber(int numPlayers) {
