@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UI;
+using Mirror;
 
 /*
 	Documentation: https://mirror-networking.gitbook.io/docs/components/network-manager
@@ -16,16 +18,31 @@ namespace Mirror.Examples.Pong
 
         public Transform leftRacketSpawn;
         public Transform rightRacketSpawn;
+
+        public Text leftScore;
+        public Text rightScore;
+
+        public Goal leftGoal;
+        public Goal rightGoal;
+
         GameObject ball;
 
         public override void OnServerAddPlayer(NetworkConnectionToClient conn)
         {
             // add player at correct spawn position
             Transform start = numPlayers == 0 ? leftRacketSpawn : rightRacketSpawn;
+            Text score = numPlayers == 0 ? leftScore : rightScore;
+            Goal goal = numPlayers == 0 ? rightGoal : leftGoal;
+
             GameObject player = Instantiate(playerPrefab, start.position, start.rotation);
-            player.GetComponent<Paddle>().SetColourByNumber(numPlayers);
+            Paddle paddle = player.GetComponent<Paddle>();
+            paddle.SetColourByNumber(numPlayers);
+            paddle.SetScoreText(score);
+            goal.enemyPaddle = paddle;
             player.name = "Paddle " + numPlayers;
             NetworkServer.AddPlayerForConnection(conn, player);
+
+            Debug.Log("Player added");
 
 
             // spawn ball if two players

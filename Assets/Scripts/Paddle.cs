@@ -12,6 +12,9 @@ public class Paddle : NetworkBehaviour
 
   [SyncVar]
   public int score = 0;
+
+  Text scoreText;
+
   public String left, right;
 
   float speed = 6;
@@ -140,5 +143,9 @@ public class Paddle : NetworkBehaviour
 
   void ResetColor() {
         GetComponent<Renderer>().material.color = darkColor;
+  }
+
+  public void SetScoreText(Text text) {
+    this.scoreText = text;
   }
 }
