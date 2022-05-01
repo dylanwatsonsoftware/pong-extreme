@@ -91,7 +91,7 @@ public class Paddle : NetworkBehaviour
     Move(transform.position + new Vector3(speed * Time.deltaTime, 0, 0));
   }
 
-  void AddForce(Vector3 forceDir) {
+  void Move(Vector3 forceDir) {
     if (isServer)
     {
         Debug.Log("is server");
