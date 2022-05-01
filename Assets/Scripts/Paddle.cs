@@ -84,38 +84,45 @@ public class Paddle : NetworkBehaviour
   }
 
   void GoLeft() {
-    AddForce(new Vector3(-speed * Time.deltaTime, 0, 0));
+    Move(transform.position + new Vector3(-speed * Time.deltaTime, 0, 0));
   }
 
   void GoRight() {
-    AddForce(new Vector3(speed * Time.deltaTime, 0, 0));
+    Move(transform.position + new Vector3(speed * Time.deltaTime, 0, 0));
   }
 
   void AddForce(Vector3 forceDir) {
     if (isServer)
     {
         Debug.Log("is server");
-        RpcAddClientForce(ForceMode.Impulse, forceDir);
+        RpcMove(forceDir);
     }
     else
     {
         Debug.Log("is client");
-        CmdAddForce(ForceMode.Impulse, forceDir);
+        MoveLocal(forceDir);
+        CmdMove(forceDir);
     }
   }
 
     [Command]
-    public void CmdAddForce(ForceMode forcemode, Vector3 forceVector)
+    public void CmdMove(Vector3 forceVector)
     {
-        Debug.Log("command add force");
-        GetComponent<Rigidbody>().MovePosition(transform.position + forceVector);
+        Debug.Log("command move");
+        MoveLocal(forceVector);
     }
  
     [ClientRpc]
-    public void RpcAddClientForce(ForceMode forcemode, Vector3 forceVector)
+    public void RpcMove(Vector3 forceVector)
     {
-        Debug.Log("clientrpc add force");
-        GetComponent<Rigidbody>().MovePosition(transform.position + forceVector);
+        Debug.Log("clientrpc move");
+        MoveLocal(forceVector);
+    }
+
+    public void MoveLocal(Vector3 forceVector)
+    {
+        Debug.Log("clientrpc loca");
+        GetComponent<Rigidbody>().MovePosition(forceVector);
     }
 
   public void SetColourByNumber(int numPlayers) {
