@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class Goal : MonoBehaviour
+public class Goal : NetworkBehaviour
 {
-
+    [SyncVar]
     public Paddle enemyPaddle;
 
     void Start()
@@ -18,7 +19,9 @@ public class Goal : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other) {
-        enemyPaddle.score++;
+        if(isServer) {
+            enemyPaddle.score++;
             GameObject.Find("Ball3D").GetComponent<Ball>().ReturnToCenter();
+        }
     }
 }
