@@ -103,7 +103,7 @@ public class Paddle : NetworkBehaviour
     else
     {
         Debug.Log("is client");
-        MoveLocal(forceDir);
+        // GetComponent<Rigidbody>().MovePosition(forceDir);
         CmdMove(forceDir);
     }
   }
@@ -112,21 +112,17 @@ public class Paddle : NetworkBehaviour
     public void CmdMove(Vector3 forceVector)
     {
         Debug.Log("command move");
-        MoveLocal(forceVector);
+        transform.Translate(forceVector);
+        
     }
  
     [ClientRpc]
     public void RpcMove(Vector3 forceVector)
     {
         Debug.Log("clientrpc move");
-        MoveLocal(forceVector);
-    }
-
-    public void MoveLocal(Vector3 forceVector)
-    {
-        Debug.Log("clientrpc loca");
         GetComponent<Rigidbody>().MovePosition(forceVector);
     }
+
 
   public void SetColourByNumber(int numPlayers) {
     if(numPlayers == 1) {

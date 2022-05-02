@@ -19,6 +19,6 @@ public class Goal : MonoBehaviour
 
     void OnTriggerEnter(Collider other) {
         enemyPaddle.score++;
-        GameObject.Find("Ball").GetComponent<Ball>().ReturnToCenter();
+            GameObject.Find("Ball3D").GetComponent<Ball>().ReturnToCenter();
     }
 }
