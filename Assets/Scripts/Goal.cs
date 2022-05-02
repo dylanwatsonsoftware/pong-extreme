@@ -26,8 +26,10 @@ public class Goal : NetworkBehaviour
             Debug.Log("enemyPaddle score! " + enemyPaddle.score);
             Debug.Log("client: " + !isServer);
             enemyPaddle.score++;
+            enemyPaddle.scoreText.GetComponent<Score>().SetScore(enemyPaddle.score.ToString());
             other.GetComponent<Ball>().ReturnToCenter();
             Debug.Log("enemyPaddle score after! " + enemyPaddle.score);
+
         }
     }
 }

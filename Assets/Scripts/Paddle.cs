@@ -13,7 +13,7 @@ public class Paddle : NetworkBehaviour
   [SyncVar]
   public int score = 0;
 
-  Text scoreText;
+  public Text scoreText;
 
   public String left, right;
 
