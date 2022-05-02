@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   build:
-    name: Build my project ✨
+    name: 👷✨
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
