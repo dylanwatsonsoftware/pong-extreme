@@ -111,14 +111,14 @@ public class Paddle : NetworkBehaviour
     public void CmdMove(Vector3 forceVector)
     {
         Debug.Log("command move");
-        GetComponent<Rigidbody>().MovePosition(forceVector);
+        GetComponent<Rigidbody>().MovePosition(transform.position + forceVector);
     }
  
     [ClientRpc]
     public void RpcMove(Vector3 forceVector)
     {
         Debug.Log("clientrpc move");
-        GetComponent<Rigidbody>().MovePosition(forceVector);
+        GetComponent<Rigidbody>().MovePosition(transform.position + forceVector);
     }
 
 
