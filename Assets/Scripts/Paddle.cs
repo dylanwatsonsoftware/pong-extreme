@@ -42,7 +42,7 @@ public class Paddle : NetworkBehaviour
     }
 
   void FixedUpdate() {
-        if (!isLocalPlayer) return;
+    if (!isLocalPlayer) return;
 
     if (Input.GetKey(left)) {
       GoLeft();
@@ -103,7 +103,6 @@ public class Paddle : NetworkBehaviour
     else
     {
         Debug.Log("is client");
-        // GetComponent<Rigidbody>().MovePosition(forceDir);
         CmdMove(forceDir);
     }
   }
@@ -112,8 +111,7 @@ public class Paddle : NetworkBehaviour
     public void CmdMove(Vector3 forceVector)
     {
         Debug.Log("command move");
-        transform.Translate(forceVector);
-        
+        GetComponent<Rigidbody>().MovePosition(forceVector);
     }
  
     [ClientRpc]

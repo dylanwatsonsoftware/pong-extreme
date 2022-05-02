@@ -18,6 +18,8 @@ public class Goal : NetworkBehaviour
         
     }
 
+
+    [ServerCallback]
     void OnTriggerEnter(Collider other) {
         if(isServer) {
             enemyPaddle.score++;
