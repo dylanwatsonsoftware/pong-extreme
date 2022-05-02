@@ -740,6 +740,8 @@ GameObject:
   - component: {fileID: 810348397}
   - component: {fileID: 810348399}
   - component: {fileID: 810348398}
+  - component: {fileID: 810348401}
+  - component: {fileID: 810348400}
   m_Layer: 5
   m_Name: Blue Score
   m_TagString: Untagged
@@ -808,6 +810,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 810348396}
   m_CullTransparentMesh: 1
+--- !u!114 &810348400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810348396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feb18ab82c3e149f8a39b031bed0ddf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  text: {fileID: 0}
+--- !u!114 &810348401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810348396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 2834675071
+  serverOnly: 0
+  visible: 0
+  m_AssetId: 
+  hasSpawned: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1479,6 +1513,8 @@ GameObject:
   - component: {fileID: 2086005240}
   - component: {fileID: 2086005242}
   - component: {fileID: 2086005241}
+  - component: {fileID: 2086005244}
+  - component: {fileID: 2086005243}
   m_Layer: 5
   m_Name: Red Score
   m_TagString: Untagged
@@ -1547,3 +1583,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2086005239}
   m_CullTransparentMesh: 1
+--- !u!114 &2086005243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086005239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feb18ab82c3e149f8a39b031bed0ddf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  text: {fileID: 0}
+--- !u!114 &2086005244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086005239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 267138750
+  serverOnly: 0
+  visible: 0
+  m_AssetId: 
+  hasSpawned: 0
