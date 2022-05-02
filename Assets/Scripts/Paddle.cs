@@ -75,9 +75,9 @@ public class Paddle : NetworkBehaviour
             direction = x > 0 ? "Right" : "Left";
 
             if(x > 0) {
-                GoLeft();
-            } else {
                 GoRight();
+            } else {
+                GoLeft();
             }
         } else {
             direction = y > 0 ? "Up" : "Down";
