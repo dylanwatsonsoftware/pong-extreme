@@ -19,11 +19,15 @@ public class Goal : NetworkBehaviour
     }
 
 
-    [ServerCallback]
     void OnTriggerEnter(Collider other) {
-        if(isServer) {
+        if(!isServer) {
+            Debug.Log("Enter! " + other.name);
+            Debug.Log("enemyPaddle! " + enemyPaddle.name);
+            Debug.Log("enemyPaddle score! " + enemyPaddle.score);
+            Debug.Log("client: " + !isServer);
             enemyPaddle.score++;
-            GameObject.Find("Ball3D").GetComponent<Ball>().ReturnToCenter();
+            other.GetComponent<Ball>().ReturnToCenter();
+            Debug.Log("enemyPaddle score after! " + enemyPaddle.score);
         }
     }
 }
