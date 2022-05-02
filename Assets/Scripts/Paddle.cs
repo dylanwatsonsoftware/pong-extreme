@@ -87,11 +87,11 @@ public class Paddle : NetworkBehaviour
   }
 
   void GoLeft() {
-    Move(transform.position + new Vector3(-speed * Time.deltaTime, 0, 0));
+    Move(new Vector3(-speed * Time.deltaTime, 0, 0));
   }
 
   void GoRight() {
-    Move(transform.position + new Vector3(speed * Time.deltaTime, 0, 0));
+    Move(new Vector3(speed * Time.deltaTime, 0, 0));
   }
 
   void Move(Vector3 forceDir) {
