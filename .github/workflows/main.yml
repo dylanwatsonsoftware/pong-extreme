@@ -12,7 +12,7 @@ jobs:
         unityVersion:
           - 2020.3.33f1
         targetPlatform:
-          - iOS # Build an iOS player.
+          #- iOS # Build an iOS player.
           - Android # Build an Android player. Works fine... but we will just use the web version for now
           - WebGL # WebGL.
         
