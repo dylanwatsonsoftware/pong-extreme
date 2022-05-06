@@ -22,9 +22,6 @@ namespace Mirror.Examples.Pong
         public Text leftScore;
         public Text rightScore;
 
-        public Goal leftGoal;
-        public Goal rightGoal;
-
         GameObject ball;
 
         public override void OnServerAddPlayer(NetworkConnectionToClient conn)
@@ -32,14 +29,13 @@ namespace Mirror.Examples.Pong
             // add player at correct spawn position
             Transform start = numPlayers == 0 ? leftRacketSpawn : rightRacketSpawn;
             Text score = numPlayers == 0 ? leftScore : rightScore;
-            Goal goal = numPlayers == 0 ? rightGoal : leftGoal;
 
             GameObject player = Instantiate(playerPrefab, start.position, start.rotation);
             Paddle paddle = player.GetComponent<Paddle>();
             paddle.SetColourByNumber(numPlayers);
             paddle.SetScoreText(score);
-            goal.enemyPaddle = paddle;
-            player.name = "Paddle " + numPlayers;
+            player.name = "Paddle " + (numPlayers + 1);
+            player.tag = "P" + (numPlayers + 1);
             NetworkServer.AddPlayerForConnection(conn, player);
 
             Debug.Log("Player added");
@@ -52,6 +48,7 @@ namespace Mirror.Examples.Pong
 
                 var ballPrefab = spawnPrefabs.Find(prefab => prefab.name == "Ball3D");
                 ball = Instantiate(ballPrefab);
+                ball.name = "Ball";
                 NetworkServer.Spawn(ball);
             }
         }

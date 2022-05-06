@@ -5,8 +5,7 @@ using Mirror;
 
 public class Goal : NetworkBehaviour
 {
-    [SyncVar]
-    public Paddle enemyPaddle;
+    public string player;
 
     void Start()
     {
@@ -19,17 +18,19 @@ public class Goal : NetworkBehaviour
     }
 
 
+    [ServerCallback]
     void OnTriggerEnter(Collider other) {
-        if(!isServer) {
-            Debug.Log("Enter! " + other.name);
-            Debug.Log("enemyPaddle! " + enemyPaddle.name);
-            Debug.Log("enemyPaddle score! " + enemyPaddle.score);
-            Debug.Log("client: " + !isServer);
-            enemyPaddle.score++;
-            enemyPaddle.scoreText.GetComponent<Score>().SetScore(enemyPaddle.score.ToString());
-            other.GetComponent<Ball>().ReturnToCenter();
-            Debug.Log("enemyPaddle score after! " + enemyPaddle.score);
+        other.GetComponent<Ball>().ReturnToCenter();
 
-        }
+        var paddle = GameObject.FindWithTag(player).GetComponent<Paddle>();
+
+        Debug.Log("Enter! " + other.name);
+        Debug.Log("enemyPaddle! " + paddle.name);
+        Debug.Log("enemyPaddle score! " + paddle.score);
+        Debug.Log("client: " + !isServer);
+        paddle.score++;
+        paddle.scoreText.GetComponent<Score>().SetScore(paddle.score.ToString());
+        
+        Debug.Log("enemyPaddle score after! " + paddle.score);
     }
 }
