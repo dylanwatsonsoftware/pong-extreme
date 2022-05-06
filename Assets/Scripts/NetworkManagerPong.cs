@@ -34,9 +34,12 @@ namespace Mirror.Examples.Pong
             Paddle paddle = player.GetComponent<Paddle>();
             paddle.SetColourByNumber(numPlayers);
             paddle.SetScoreText(score);
-            player.name = "Paddle " + (numPlayers + 1);
-            player.tag = "P" + (numPlayers + 1);
+            int playerNum = (numPlayers + 1);
+            player.name = "Paddle " + playerNum;
+            player.tag = "P" + playerNum;
             NetworkServer.AddPlayerForConnection(conn, player);
+
+            
 
             Debug.Log("Player added");
 
@@ -45,6 +48,8 @@ namespace Mirror.Examples.Pong
             if (numPlayers == 2)
             {
                 Debug.Log("2 players! Creating a ball");
+                GameObject.Find("P1 Score").GetComponent<Score>().SetScore("0");
+                GameObject.Find("P2 Score").GetComponent<Score>().SetScore("0");
 
                 var ballPrefab = spawnPrefabs.Find(prefab => prefab.name == "Ball3D");
                 ball = Instantiate(ballPrefab);
