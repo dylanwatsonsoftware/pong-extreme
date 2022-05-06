@@ -23,13 +23,14 @@ public class Goal : NetworkBehaviour
         other.GetComponent<Ball>().ReturnToCenter();
 
         var paddle = GameObject.FindWithTag(player).GetComponent<Paddle>();
+        var score = GameObject.Find(player + " Score").GetComponent<Score>();
 
         Debug.Log("Enter! " + other.name);
         Debug.Log("enemyPaddle! " + paddle.name);
         Debug.Log("enemyPaddle score! " + paddle.score);
         Debug.Log("client: " + !isServer);
         paddle.score++;
-        paddle.scoreText.GetComponent<Score>().SetScore(paddle.score.ToString());
+        score.SetScore(paddle.score.ToString());
         
         Debug.Log("enemyPaddle score after! " + paddle.score);
     }

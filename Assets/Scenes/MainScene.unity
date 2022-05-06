@@ -753,7 +753,7 @@ GameObject:
   - component: {fileID: 810348401}
   - component: {fileID: 810348400}
   m_Layer: 5
-  m_Name: Blue Score
+  m_Name: P1 Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1050,7 +1050,7 @@ GameObject:
   - component: {fileID: 1668854723}
   - component: {fileID: 1668854724}
   m_Layer: 0
-  m_Name: Blue Goal
+  m_Name: P1 Goal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1404,7 +1404,7 @@ GameObject:
   - component: {fileID: 2074935903}
   - component: {fileID: 2074935904}
   m_Layer: 0
-  m_Name: Red Goal
+  m_Name: P2 Goal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1534,7 +1534,7 @@ GameObject:
   - component: {fileID: 2086005244}
   - component: {fileID: 2086005243}
   m_Layer: 5
-  m_Name: Red Score
+  m_Name: P2 Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1557,7 +1557,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 250, y: -141}
+  m_AnchoredPosition: {x: 226, y: -146}
   m_SizeDelta: {x: 378.5598, y: 238.36792}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2086005241

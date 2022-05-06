@@ -8,7 +8,7 @@ using Mirror;
 public class Score : NetworkBehaviour {
     
     [SyncVar]
-    string score;
+    string score = "0";
 
     public Text text;
 
