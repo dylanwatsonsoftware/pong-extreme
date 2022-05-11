@@ -17,6 +17,9 @@ public class Paddle : NetworkBehaviour
 
   public String left, right;
 
+  [SyncVar]
+  public Boolean playerOne;
+
   float speed = 6;
 
     private Touch theTouch;
@@ -84,6 +87,8 @@ public class Paddle : NetworkBehaviour
         }
       }
     }
+    
+    Camera.main.transform.LookAt(transform.position + new Vector3(0, 0, (playerOne ? 5 : -5)), Quaternion.Euler(0, (playerOne ? -1 : 1) * 90, 0) * transform.right);
   }
 
   void GoLeft() {

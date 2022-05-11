@@ -37,6 +37,7 @@ namespace Mirror.Examples.Pong
             int playerNum = (numPlayers + 1);
             player.name = "Paddle " + playerNum;
             player.tag = "P" + playerNum;
+            paddle.playerOne = (numPlayers == 0);
             Debug.Log("Connected " + (paddle.playerOne ? "Player 1" : "Player 2"));
             NetworkServer.AddPlayerForConnection(conn, player);
 
