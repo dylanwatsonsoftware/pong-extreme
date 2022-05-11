@@ -37,12 +37,8 @@ namespace Mirror.Examples.Pong
             int playerNum = (numPlayers + 1);
             player.name = "Paddle " + playerNum;
             player.tag = "P" + playerNum;
+            Debug.Log("Connected " + (paddle.playerOne ? "Player 1" : "Player 2"));
             NetworkServer.AddPlayerForConnection(conn, player);
-
-            
-
-            Debug.Log("Player added");
-
 
             // spawn ball if two players
             if (numPlayers == 2)
