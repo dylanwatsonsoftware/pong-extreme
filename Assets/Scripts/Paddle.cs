@@ -97,12 +97,10 @@ public class Paddle : NetworkBehaviour
   void Move(Vector3 forceDir) {
     if (isServer)
     {
-        Debug.Log("is server");
         RpcMove(forceDir);
     }
     else
     {
-        Debug.Log("is client");
         CmdMove(forceDir);
     }
   }
@@ -110,14 +108,12 @@ public class Paddle : NetworkBehaviour
     [Command]
     public void CmdMove(Vector3 forceVector)
     {
-        Debug.Log("command move");
         GetComponent<Rigidbody>().MovePosition(transform.position + forceVector);
     }
  
     [ClientRpc]
     public void RpcMove(Vector3 forceVector)
     {
-        Debug.Log("clientrpc move");
         GetComponent<Rigidbody>().MovePosition(transform.position + forceVector);
     }
 
