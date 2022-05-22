@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class Goal : MonoBehaviour
+public class Goal : NetworkBehaviour
 {
-
-    public Paddle enemyPaddle;
+    public string player;
 
     void Start()
     {
@@ -17,8 +17,21 @@ public class Goal : MonoBehaviour
         
     }
 
+
+    [ServerCallback]
     void OnTriggerEnter(Collider other) {
-        enemyPaddle.score++;
-        GameObject.Find("Ball").GetComponent<Ball>().ReturnToCenter();
+        other.GetComponent<Ball>().ReturnToCenter();
+
+        var paddle = GameObject.FindWithTag(player).GetComponent<Paddle>();
+        var score = GameObject.Find(player + " Score").GetComponent<Score>();
+
+        Debug.Log("Enter! " + other.name);
+        Debug.Log("enemyPaddle! " + paddle.name);
+        Debug.Log("enemyPaddle score! " + paddle.score);
+        Debug.Log("client: " + !isServer);
+        paddle.score++;
+        score.SetScore(paddle.score.ToString());
+        
+        Debug.Log("enemyPaddle score after! " + paddle.score);
     }
 }
