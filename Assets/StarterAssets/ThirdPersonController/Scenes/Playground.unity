@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 8900000, guid: 619e305f5165a9946b7f72464e44ca4a, type: 3}
   m_Sun: {fileID: 2114283754330233425}
-  m_IndirectSpecularColor: {r: 0.025252314, g: 0.054982007, b: 0.11085914, a: 1}
+  m_IndirectSpecularColor: {r: 0.1727952, g: 0.2600245, b: 0.36693013, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1824,6 +1824,16 @@ PrefabInstance:
       propertyPath: sprint
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 135756642000475821, guid: 64dce48905ffd9b4293e595fa6941544,
+        type: 3}
+      propertyPath: cursorLocked
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 135756642000475821, guid: 64dce48905ffd9b4293e595fa6941544,
+        type: 3}
+      propertyPath: cursorInputForLook
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3893294197879345259, guid: 64dce48905ffd9b4293e595fa6941544,
         type: 3}
       propertyPath: m_RootOrder
@@ -1883,6 +1893,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerArmature
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544,
+        type: 3}
+      propertyPath: MoveSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544,
+        type: 3}
+      propertyPath: SprintSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544,
+        type: 3}
+      propertyPath: LockCameraPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544,
+        type: 3}
+      propertyPath: RotationSmoothTime
+      value: 0.079
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
