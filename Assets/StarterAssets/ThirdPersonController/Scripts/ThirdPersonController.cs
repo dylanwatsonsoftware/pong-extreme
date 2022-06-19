@@ -304,7 +304,7 @@ namespace StarterAssets
                 }
 
                 // Jump
-                if ((_input.jump || _input.move.y > 0.8f) && _jumpTimeoutDelta <= 0.0f)
+                if ((_input.jump || _input.move.y > 0.4f) && _jumpTimeoutDelta <= 0.0f)
                 {
                     // the square root of H * -2 * G = how much velocity needed to reach desired height
                     _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
