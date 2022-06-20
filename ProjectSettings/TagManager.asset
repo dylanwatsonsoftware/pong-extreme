@@ -4,7 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Ball
+  - CinemachineTarget
+  - Controls
   - P1
   - P2
   layers:
@@ -14,7 +15,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Controls
   - 
   - 
   - 
