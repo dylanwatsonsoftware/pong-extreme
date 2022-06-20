@@ -76,6 +76,9 @@ namespace StarterAssets
         [Tooltip("For locking the camera position on all axis")]
         public bool LockCameraPosition = false;
 
+        [Tooltip("Controller Input")]
+        public UICanvasControllerInput controllerInput;
+
         // cinemachine
         private float _cinemachineTargetYaw;
         private float _cinemachineTargetPitch;
@@ -123,13 +126,15 @@ namespace StarterAssets
             }
         }
 
+        public override void OnStartLocalPlayer() {
+            // Set camera here
+
+            controllerInput.gameObject.SetActive(true);
+        }
+
         public override void OnStartAuthority() {
             PlayerInput input = GetComponent<PlayerInput>();
             input.enabled = true;
-
-            foreach(var i in GetComponentsInChildren<UICanvasControllerInput>()) {
-                i.enabled = true;
-            }
         }
 
         private void Awake()
