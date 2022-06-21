@@ -4057,6 +4057,7 @@ GameObject:
   - component: {fileID: 7485333384073662541}
   - component: {fileID: 1420015252059553415}
   - component: {fileID: 1034073517499483802}
+  - component: {fileID: 365139559563373521}
   m_Layer: 8
   m_Name: TronPlayer
   m_TagString: Player
@@ -4354,6 +4355,22 @@ MonoBehaviour:
   showGizmos: 0
   showOverlay: 0
   overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+--- !u!114 &365139559563373521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9113005558298150288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f6f3bf89aa97405989c802ba270f815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 1
+  animator: {fileID: 2583969139211634000}
 --- !u!1 &9186171407059951427
 GameObject:
   m_ObjectHideFlags: 0
