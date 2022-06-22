@@ -124,6 +124,8 @@ namespace StarterAssets
         private StarterAssetsInputs _input;
         private GameObject _mainCamera;
 
+        private GameObject followCam;
+
         private const float _threshold = 0.01f;
 
         private bool _hasAnimator;
@@ -148,6 +150,7 @@ namespace StarterAssets
             // Set camera here
 
             controllerInput.gameObject.SetActive(true);
+            followCam = GameObject.Find("PlayerFollowCamera");
         }
 
         public override void OnStartAuthority()
@@ -192,16 +195,20 @@ namespace StarterAssets
             if (!isLocalPlayer)
                 return;
 
-            Debug.Log("Player: " + playerNum);
-            if (playerNum == 1)
+            if (followCam)
             {
-                _mainCamera.transform.position = new Vector3(0, 7.61f, -7);
-                _mainCamera.transform.rotation = Quaternion.Euler(29, 0, 0);
-            }
-            else if (playerNum == 2)
-            {
-                _mainCamera.transform.position = new Vector3(0, 7.61f, 20);
-                _mainCamera.transform.rotation = Quaternion.Euler(29, 180, 0);
+                if (playerNum == 1)
+                {
+                    followCam.transform.position = new Vector3(0, 7.61f, -7);
+                    followCam.transform.rotation = Quaternion.Euler(29, 0, 0);
+                }
+                else if (playerNum == 2)
+                {
+                    followCam.transform.position = new Vector3(0, 7.61f, 20);
+                    followCam.transform.rotation = Quaternion.Euler(29, 180, 0);
+                }
+
+                followCam = null;
             }
 
             _hasAnimator = TryGetComponent(out _animator);
