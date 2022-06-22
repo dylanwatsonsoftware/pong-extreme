@@ -126,6 +126,9 @@ namespace StarterAssets
             }
         }
 
+        [SyncVar]
+        public int playerNum = 0;
+
         public override void OnStartLocalPlayer() {
             // Set camera here
 
@@ -143,6 +146,15 @@ namespace StarterAssets
             if (_mainCamera == null)
             {
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+
+                Debug.Log("Player: " + playerNum);
+                if(playerNum == 1) {
+                    _mainCamera.transform.position = new Vector3(0, 7.61f, -7);
+                    _mainCamera.transform.rotation = Quaternion.Euler(29, 0, 0);
+                } else {
+                    _mainCamera.transform.position = new Vector3(0, 7.61f, 20);
+                    _mainCamera.transform.rotation = Quaternion.Euler(29, 180, 0);
+                }
             }
         }
 
@@ -229,6 +241,8 @@ namespace StarterAssets
 
         private void Move()
         {
+            if (!isLocalPlayer) return;
+
             // set target speed based on move speed, sprint speed and if sprint is pressed
             float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
 

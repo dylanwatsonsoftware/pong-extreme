@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Mirror;
+using StarterAssets;
 
 /*
 	Documentation: https://mirror-networking.gitbook.io/docs/components/network-manager
@@ -30,7 +31,9 @@ namespace Mirror.Examples.Pong
             Text score = numPlayers == 0 ? leftScore : rightScore;
 
             GameObject player = Instantiate(playerPrefab, start.position, start.rotation);
+            TronPlayerController tron = player.GetComponent<TronPlayerController>();
             int playerNum = (numPlayers + 1);
+            tron.playerNum = playerNum;
             player.name = "Paddle " + playerNum;
             player.tag = "P" + playerNum;
             Debug.Log("Connected " + ((numPlayers == 0) ? "Player 1" : "Player 2"));
