@@ -14,7 +14,7 @@ jobs:
         targetPlatform:
           #- iOS # Build an iOS player.
           - Android # Build an Android player. Works fine... but we will just use the web version for now
-          - WebGL # WebGL.
+          # - WebGL # WebGL.
         
     steps:
       # Checkout
