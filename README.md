@@ -1,6 +1,6 @@
 ![build](https://github.com/dylanwatsonsoftware/pong-extreme/actions/workflows/main.yml/badge.svg)
 
-# Pong Extreme
+# Tron Extreme
 
 
 
