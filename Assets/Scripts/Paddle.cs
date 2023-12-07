@@ -77,7 +77,7 @@ public class Paddle : NetworkBehaviour
         } else if (Mathf.Abs(x) > Mathf.Abs(y)) {
             direction = x > 0 ? "Right" : "Left";
 
-            if(x > 0) {
+            if(playerOne ? x > 0 : x < 0) {
                 GoRight();
             } else {
                 GoLeft();
